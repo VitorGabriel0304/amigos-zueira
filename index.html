@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🤡 Hall da Fama dos Palhaços</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --yellow: #FFE600;
+      --red: #FF2D2D;
+      --blue: #1A1AFF;
+      --white: #FFFDF0;
+      --black: #0D0D0D;
+      --pink: #FF69B4;
+      --green: #00FF88;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Comic Neue', cursive;
+      overflow-x: hidden;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='28' font-size='28'%3E🤡%3C/text%3E%3C/svg%3E") 16 16, auto;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: relative;
+      text-align: center;
+      padding: 60px 20px 40px;
+      overflow: hidden;
+      border-bottom: 6px dashed var(--yellow);
+    }
+
+    .confetti-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, var(--yellow) 2px, transparent 2px),
+        radial-gradient(circle, var(--red) 2px, transparent 2px),
+        radial-gradient(circle, var(--blue) 2px, transparent 2px),
+        radial-gradient(circle, var(--pink) 2px, transparent 2px);
+      background-size: 60px 60px, 45px 45px, 80px 80px, 35px 35px;
+      background-position: 0 0, 20px 20px, 10px 30px, 40px 10px;
+      opacity: 0.15;
+    }
+
+    .site-title {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(3rem, 10vw, 8rem);
+      line-height: 1;
+      letter-spacing: 4px;
+      color: var(--yellow);
+      text-shadow:
+        6px 6px 0 var(--red),
+        12px 12px 0 var(--blue);
+      animation: wobble 2s infinite;
+      position: relative;
+    }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(-1deg); }
+      50% { transform: rotate(1deg); }
+    }
+
+    .site-subtitle {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(1rem, 3vw, 1.8rem);
+      color: var(--pink);
+      letter-spacing: 3px;
+      margin-top: 10px;
+      position: relative;
+      text-shadow: 3px 3px 0 #000;
+    }
+
+    .emoji-row {
+      font-size: 2.5rem;
+      margin-top: 16px;
+      animation: bounce 1s infinite alternate;
+      position: relative;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+
+    /* ─── CONTADOR ─── */
+    .contador-section {
+      text-align: center;
+      padding: 20px;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--red),
+        var(--red) 10px,
+        var(--black) 10px,
+        var(--black) 20px
+      );
+      font-family: 'Bangers', cursive;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      color: var(--white);
+    }
+
+    .contador-section span {
+      color: var(--yellow);
+      font-size: 2rem;
+    }
+
+    /* ─── GRID DE CARDS ─── */
+    .gallery-section {
+      padding: 60px 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(2rem, 6vw, 4rem);
+      color: var(--yellow);
+      text-align: center;
+      letter-spacing: 4px;
+      margin-bottom: 50px;
+      text-shadow: 4px 4px 0 var(--red);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--black);
+      border: 4px solid var(--yellow);
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: cardIn 0.6s ease backwards;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; border-color: var(--yellow); }
+    .card:nth-child(2) { animation-delay: 0.2s; border-color: var(--pink); }
+    .card:nth-child(3) { animation-delay: 0.3s; border-color: var(--blue); }
+    .card:nth-child(4) { animation-delay: 0.4s; border-color: var(--green); }
+    .card:nth-child(5) { animation-delay: 0.5s; border-color: var(--red); }
+    .card:nth-child(6) { animation-delay: 0.6s; border-color: var(--yellow); }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(40px) rotate(-3deg); }
+      to { opacity: 1; transform: translateY(0) rotate(0deg); }
+    }
+
+    .card:hover {
+      transform: translateY(-8px) rotate(1deg) scale(1.02);
+      box-shadow: 10px 10px 0 var(--yellow), 20px 20px 0 var(--red);
+      z-index: 2;
+    }
+
+    .card-badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Bangers', cursive;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      z-index: 3;
+    }
+
+    .card-photo-wrap {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.2) contrast(1.05);
+      transition: transform 0.4s;
+    }
+
+    .card:hover .card-photo-wrap img {
+      transform: scale(1.08);
+      filter: saturate(1.5) hue-rotate(15deg);
+    }
+
+    .placeholder-photo {
+      font-size: 6rem;
+      opacity: 0.3;
+      user-select: none;
+    }
+
+    /* Overlay de zoom */
+    .card-photo-wrap::after {
+      content: '🔍 VER FULL';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bangers', cursive;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      color: var(--yellow);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover .card-photo-wrap::after { opacity: 1; }
+
+    .card-body {
+      padding: 20px;
+      border-top: 3px dashed currentColor;
+    }
+
+    .card-name {
+      font-family: 'Bangers', cursive;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      color: var(--yellow);
+      margin-bottom: 6px;
+      text-shadow: 2px 2px 0 var(--red);
+    }
+
+    .card-title {
+      font-size: 0.85rem;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .card-roast {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--white);
+      background: #111;
+      border-left: 4px solid var(--pink);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+
+    .card-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .stat {
+      background: #111;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-label { color: #666; }
+    .stat-value {
+      font-family: 'Bangers', cursive;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .stat-value.red { color: var(--red); }
+    .stat-value.green { color: var(--green); }
+    .stat-value.yellow { color: var(--yellow); }
+    .stat-value.pink { color: var(--pink); }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      border: 6px solid var(--yellow);
+      box-shadow: 0 0 60px var(--yellow);
+      animation: popIn 0.3s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .lightbox-caption {
+      font-family: 'Bangers', cursive;
+      font-size: 2rem;
+      color: var(--yellow);
+      margin-top: 20px;
+      letter-spacing: 3px;
+      text-shadow: 3px 3px 0 var(--red);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-family: 'Bangers', cursive;
+      font-size: 2.5rem;
+      color: var(--red);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .lightbox-close:hover { transform: scale(1.3) rotate(10deg); }
+
+    /* ─── PLACAR ─── */
+    .ranking-section {
+      max-width: 700px;
+      margin: 0 auto 80px;
+      padding: 0 30px;
+    }
+
+    .ranking-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ranking-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #111;
+      border: 2px solid #333;
+      padding: 14px 20px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+      animation: cardIn 0.5s ease backwards;
+    }
+
+    .ranking-item:hover { border-color: var(--yellow); transform: translateX(6px); }
+
+    .ranking-pos {
+      font-family: 'Bangers', cursive;
+      font-size: 2rem;
+      color: var(--yellow);
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .ranking-pos.gold { color: #FFD700; }
+    .ranking-pos.silver { color: #C0C0C0; }
+    .ranking-pos.bronze { color: #CD7F32; }
+
+    .ranking-info { flex: 1; }
+    .ranking-name {
+      font-family: 'Bangers', cursive;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    .ranking-desc {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .ranking-score {
+      font-family: 'Bangers', cursive;
+      font-size: 1.8rem;
+      color: var(--red);
+    }
+
+    /* ─── AVISO ─── */
+    .aviso-section {
+      text-align: center;
+      padding: 40px 30px;
+      border-top: 6px dashed var(--red);
+      border-bottom: 6px dashed var(--red);
+      margin-bottom: 60px;
+    }
+
+    .aviso-section p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 0.9rem;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    .aviso-section strong { color: var(--yellow); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 6px solid var(--yellow);
+      background: #050505;
+    }
+
+    .footer-text {
+      font-family: 'Bangers', cursive;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      color: #444;
+    }
+
+    .footer-text span { color: var(--yellow); }
+
+    /* ─── TICKER ─── */
+    .ticker {
+      background: var(--yellow);
+      color: var(--black);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 8px 0;
+      font-family: 'Bangers', cursive;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 20s linear infinite;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(100vw); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* ─── RESPONSIVO ─── */
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-inner">
+    🤡 BEM-VINDO AO HALL DA FAMA &nbsp;|&nbsp; 🐒 ZONA PURA AQUI &nbsp;|&nbsp; 🎪 SEM ADULTOS RESPONSÁVEIS &nbsp;|&nbsp; 💀 VOCÊ FOI AVISADO &nbsp;|&nbsp; 🤡 BEM-VINDO AO HALL DA FAMA &nbsp;|&nbsp; 🐒 ZONA PURA AQUI &nbsp;|&nbsp; 🎪 SEM ADULTOS RESPONSÁVEIS &nbsp;|&nbsp; 💀 VOCÊ FOI AVISADO &nbsp;|&nbsp;
+  </span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="confetti-bg"></div>
+  <h1 class="site-title">HALL DA FAMA<br>DOS PALHAÇOS</h1>
+  <p class="site-subtitle">⚠️ OS MAIORES ZOADOS DO PEDAÇO ⚠️</p>
+  <div class="emoji-row">🤡 🎪 💀 🐒 🎭 🦆</div>
+</header>
+
+<!-- CONTADOR -->
+<div class="contador-section">
+  ZOADÕES CATALOGADOS: <span id="total">0</span> &nbsp;|&nbsp; NÍVEL DE VERGONHA ALHEIA: <span>CRÍTICO</span>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <h2 class="section-title">📸 OS ESCOLHIDOS</h2>
+
+  <div class="gallery-grid" id="gallery">
+
+    <!-- CARD 1 -->
+    <div class="card" onclick="openLightbox('foto1.jpg', 'O LENDA')">
+      <span class="card-badge">⭐ MVP DO ANO</span>
+      <div class="card-photo-wrap">
+        <!-- Troque "foto1.jpg" pelo caminho da sua foto -->
+        <img src="imgs/fauser.jpeg" alt="Amigo 1" onerror="this.style.display='none';this.parentElement.querySelector('.placeholder-photo').style.display='block'">
+        <span class="placeholder-photo" style="display:none">🤡</span>
+      </div>
+      <div class="card-body" style="border-color: var(--yellow)">
+        <div class="card-name">FAUSER</div>
+        <div class="card-title">🏆 BILIONARIO</div>
+        <div class="card-roast">"Dinheiro não é problema, problema é o que ele faz com ele"</div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="stat-label">Nível de riqueza</div>
+            <div class="stat-value red">9000+</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">QI estimado</div>
+            <div class="stat-value yellow">1.8 BI</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Excesso de confiança</div>
+            <div class="stat-value pink">∞</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Patrimonio liquido</div>
+            <div class="stat-value green">∞</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card" onclick="openLightbox('foto2.jpg', 'O DORMINHOCO')">
+      <span class="card-badge" style="background:var(--blue)">😴 DORME EM PÉ</span>
+      <div class="card-photo-wrap">
+        <img src="imgs/caio.jpeg" alt="Amigo 2" onerror="this.style.display='none';this.parentElement.querySelector('.placeholder-photo').style.display='block'">
+        <span class="placeholder-photo" style="display:none">😴</span>
+      </div>
+      <div class="card-body" style="border-color: var(--pink)">
+        <div class="card-name">CAIO</div>
+        <div class="card-title">🛌 Campeão nacional de cochilo</div>
+        <div class="card-roast">"Chegou atrasado, dormiu na metade e ainda reclamou do fim"</div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="stat-label">Horas dormidas hoje</div>
+            <div class="stat-value yellow">14h</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Acordou no plano</div>
+            <div class="stat-value red">NUNCA</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Alarmes ignorados</div>
+            <div class="stat-value pink">99</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Atrasos em 2026</div>
+            <div class="stat-value green">∞</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card" onclick="openLightbox('foto3.jpg', 'O ESPECIALISTA')">
+      <span class="card-badge" style="background:var(--green); color:#000">🧠 SABE DE TUDO</span>
+      <div class="card-photo-wrap">
+        <img src="imgs/clarinha2.jpeg" alt="Amigo 3" onerror="this.style.display='none';this.parentElement.querySelector('.placeholder-photo').style.display='block'">
+        <span class="placeholder-photo" style="display:none">🧠</span>
+      </div>
+      <div class="card-body" style="border-color: var(--blue)">
+        <div class="card-name">Clarinha</div>
+        <div class="card-title">📖 Especialista em assunto que ninguém perguntou</div>
+        <div class="card-roast">"Corrigiu o professor, errou, e disse que era o professor que estava errado"</div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="stat-label">Certeza nas opiniões</div>
+            <div class="stat-value yellow">110%</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Vezes que estava certo</div>
+            <div class="stat-value red">3</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Admitiu erro</div>
+            <div class="stat-value pink">NUNCA</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Índice de papo furado</div>
+            <div class="stat-value green">97%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card" onclick="openLightbox('foto4.jpg', 'O CALOTEIRO')">
+      <span class="card-badge" style="background:var(--pink)">💸 DEVE PRA TODO MUNDO</span>
+      <div class="card-photo-wrap">
+        <img src="imgs/pino.jpeg" alt="Amigo 4" onerror="this.style.display='none';this.parentElement.querySelector('.placeholder-photo').style.display='block'">
+        <span class="placeholder-photo" style="display:none">💸</span>
+      </div>
+      <div class="card-body" style="border-color: var(--green)">
+        <div class="card-name">Enzo Nunes</div>
+        <div class="card-title">💰 Especialista em "te pago semana que vem"</div>
+        <div class="card-roast">"Te deve desde 2019 mas tem iPhone novo todo ano"</div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="stat-label">Dívida total</div>
+            <div class="stat-value red">R$ ???</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Pagou alguma vez</div>
+            <div class="stat-value yellow">2x</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Desculpas criativas</div>
+            <div class="stat-value pink">847</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Credibilidade restante</div>
+            <div class="stat-value green">0%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="card" onclick="openLightbox('foto5.jpg', 'O FOTOGÊNICO')">
+      <span class="card-badge" style="background:var(--yellow); color:#000">📸 REJEITADO POR APP</span>
+      <div class="card-photo-wrap">
+        <img src="imgs/henry.jpeg" alt="Amigo 5" onerror="this.style.display='none';this.parentElement.querySelector('.placeholder-photo').style.display='block'">
+        <span class="placeholder-photo" style="display:none">📸</span>
+      </div>
+      <div class="card-body" style="border-color: var(--red)">
+        <div class="card-name">Henry</div>  
+        <div class="card-title">🪞 Acha que é gato, o espelho discorda</div>
+        <div class="card-roast">"Tirou 37 fotos, usou 4 filtros e ainda ficou ruim"</div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="stat-label">Selfies por dia</div>
+            <div class="stat-value yellow">23</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Filtros usados</div>
+            <div class="stat-value pink">TODOS</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Matches no Tinder</div>
+            <div class="stat-value red">1 (a mãe)</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Confiança no espelho</div>
+            <div class="stat-value green">200%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+ 
+<!-- RANKING -->
+<section class="ranking-section">
+  <h2 class="section-title">🏆 PLACAR DA VERGONHA</h2>
+  <ul class="ranking-list">
+    <li class="ranking-item">
+      <div class="ranking-pos gold">🥇</div>
+      <div class="ranking-info">
+        <div class="ranking-name">NOME DO 1º</div>
+        <div class="ranking-desc">Maior coleção de vexames documentados</div>
+      </div>
+      <div class="ranking-score">9999 pts</div>
+    </li>
+    <li class="ranking-item" style="animation-delay:0.1s">
+      <div class="ranking-pos silver">🥈</div>
+      <div class="ranking-info">
+        <div class="ranking-name">NOME DO 2º</div>
+        <div class="ranking-desc">Vice-campeão de calote e promessa vazia</div>
+      </div>
+      <div class="ranking-score">8420 pts</div>
+    </li>
+    <li class="ranking-item" style="animation-delay:0.2s">
+      <div class="ranking-pos bronze">🥉</div>
+      <div class="ranking-info">
+        <div class="ranking-name">NOME DO 3º</div>
+        <div class="ranking-desc">Bronze em dormência e atraso crônico</div>
+      </div>
+      <div class="ranking-score">7100 pts</div>
+    </li>
+    <li class="ranking-item" style="animation-delay:0.3s">
+      <div class="ranking-pos">4</div>
+      <div class="ranking-info">
+        <div class="ranking-name">NOME DO 4º</div>
+        <div class="ranking-desc">Especialista em opiniões não solicitadas</div>
+      </div>
+      <div class="ranking-score">5300 pts</div>
+    </li>
+    <li class="ranking-item" style="animation-delay:0.4s">
+      <div class="ranking-pos">5</div>
+      <div class="ranking-info">
+        <div class="ranking-name">NOME DO 5º</div>
+        <div class="ranking-desc">Filtros no rosto, zeros na conta</div>
+      </div>
+      <div class="ranking-score">4100 pts</div>
+    </li>
+    <li class="ranking-item" style="animation-delay:0.5s">
+      <div class="ranking-pos">6</div>
+      <div class="ranking-info">
+        <div class="ranking-name">NOME DO 6º</div>
+        <div class="ranking-desc">Intoxicou o grupo mas ainda está orgulhoso</div>
+      </div>
+      <div class="ranking-score">3800 pts</div>
+    </li>
+  </ul>
+</section>
+
+<!-- AVISO -->
+<div class="aviso-section">
+  <h2 class="section-title" style="font-size:1.6rem; margin-bottom:16px;">⚠️ AVISO IMPORTANTE ⚠️</h2>
+  <p>
+    Este site foi feito <strong>com muito amor</strong> (e sem nenhuma culpa).<br>
+    Todos os "zoados" acima são amigos próximos e provavelmente merecem.<br>
+    Se você se ofendeu, parabéns: você se reconheceu. 🤡<br><br>
+    <strong>Desenvolvido com orgulho e sem vergonha alguma.</strong>
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="emoji-row" style="margin-bottom:16px;">🤡 🎪 💀 🐒 🎭</div>
+  <div class="footer-text">HALL DA FAMA DOS PALHAÇOS &nbsp;|&nbsp; <span>© 2025</span> &nbsp;|&nbsp; FEITO COM ZERO REMORSO</div>
+  <div style="margin-top:12px; font-size:0.8rem; color:#333; font-family:'Comic Neue', cursive;">
+    Hospedado no GitHub Pages porque servidor de verdade é caro
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">✕ FECHAR</div>
+  <img id="lightbox-img" src="" alt="" />
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+  // Contador
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.card');
+    document.getElementById('total').textContent = cards.length;
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0) rotate(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card, .ranking-item').forEach(el => {
+      observer.observe(el);
+    });
+  });
+
+  // Lightbox
+  function openLightbox(src, name) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    const cap = document.getElementById('lightbox-caption');
+    img.src = src;
+    cap.textContent = '🤡 ' + name + ' 🤡';
+    lb.classList.add('open');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+</body>
+</html>
